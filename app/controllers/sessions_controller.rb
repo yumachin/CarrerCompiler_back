@@ -8,10 +8,12 @@ class SessionsController < DeviseTokenAuth::SessionsController
       response.set_header("Set-Cookie", [
         "access-token=#{token['access-token']}; Path=/; HttpOnly; Secure; SameSite=None; Max-Age=60",
         "client=#{token['client']}; Path=/; HttpOnly; Secure; SameSite=None; Max-Age=60",
-        "uid=#{token['uid']}; Path=/; HttpOnly; Secure; SameSite=None; Max-Age=60",
+        "email=#{token['uid']}; Path=/; HttpOnly; Secure; SameSite=None; Max-Age=60",
+        "uid=#{user.id}; Path=/; HttpOnly; Secure; SameSite=None; Max-Age=60",
         "token-type=Bearer; HttpOnly; Secure; SameSite=None; Path=/; Max-Age=60"
       ])
       @current_user = user
+      Rails.logger.debug "current_userは、#{@current_user}"
       render json: { data: user }, status: :ok
     else
       render json: { error: 'メールアドレスまたはパスワードが正しくありません。' }, status: :unauthorized
@@ -27,6 +29,7 @@ class SessionsController < DeviseTokenAuth::SessionsController
     response.set_header("Set-Cookie", [
       "access-token=; Path=/; HttpOnly; Secure; SameSite=None; Max-Age=0",
       "client=; Path=/; HttpOnly; Secure; SameSite=None; Max-Age=0",
+      "email=; Path=/; HttpOnly; Secure; SameSite=None; Max-Age=0",
       "uid=; Path=/; HttpOnly; Secure; SameSite=None; Max-Age=0",
       "token-type=; HttpOnly; Secure; SameSite=None; Path=/; Max-Age=0"
     ])

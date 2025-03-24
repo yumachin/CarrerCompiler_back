@@ -7,7 +7,8 @@ class RegistrationsController < DeviseTokenAuth::RegistrationsController
       response.set_header("Set-Cookie", [
         "access-token=#{token['access-token']}; Path=/; HttpOnly; Secure; SameSite=None; Max-Age=60",
         "client=#{token['client']}; Path=/; HttpOnly; Secure; SameSite=None; Max-Age=60",
-        "uid=#{token['uid']}; Path=/; HttpOnly; Secure; SameSite=None; Max-Age=60",
+        "email=#{token['uid']}; Path=/; HttpOnly; Secure; SameSite=None; Max-Age=60",
+        "uid=#{user.id}; Path=/; HttpOnly; Secure; SameSite=None; Max-Age=60",
         "token-type=Bearer; HttpOnly; Secure; SameSite=None; Path=/; Max-Age=60"
       ])
       @current_user = user
