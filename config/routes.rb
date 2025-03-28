@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   }
   namespace :api do
     namespace :v1 do
-      resource :users, only: [ :update ]
+      resource :users, only: [ :show, :update ]
+      resources :interviews, only: [ :index, :create ]
+      resource :companies, only: [ :create ]
     end
   end
 end

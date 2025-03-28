@@ -1,6 +1,10 @@
 class Api::V1::UsersController < ApplicationController
   before_action :set_user
 
+  def show
+    render json: @current_user
+  end
+
   def update
     uid = request.headers["uid"]
     user = User.find(uid)

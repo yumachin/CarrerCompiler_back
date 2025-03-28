@@ -10,7 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_22_143832) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_25_114002) do
+  create_table "companies", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "name", default: "", null: false
+    t.integer "industry", default: 0
+    t.integer "employees", default: 0
+    t.string "website", default: ""
+    t.string "address", default: ""
+    t.integer "income", default: 0
+    t.integer "holidays", default: 0
+    t.string "working_hours", default: ""
+    t.string "other", default: ""
+    t.boolean "favorite", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_companies_on_user_id"
+  end
+
+  create_table "interviews", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "company_id", null: false
+    t.datetime "date"
+    t.integer "selection_id", default: 0
+    t.string "interview_type", default: ""
+    t.string "online_url", default: ""
+    t.boolean "status", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_interviews_on_company_id"
+    t.index ["user_id"], name: "index_interviews_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
@@ -33,4 +64,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_22_143832) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
+
+  add_foreign_key "companies", "users"
+  add_foreign_key "interviews", "companies"
+  add_foreign_key "interviews", "users"
 end
