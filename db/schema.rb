@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_25_114002) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_29_060013) do
   create_table "companies", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "name", default: "", null: false
@@ -42,6 +42,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_25_114002) do
     t.index ["user_id"], name: "index_interviews_on_user_id"
   end
 
+  create_table "meetings", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "company_id", null: false
+    t.datetime "date"
+    t.string "meeting_type", default: ""
+    t.string "online_url", default: ""
+    t.boolean "status", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_meetings_on_company_id"
+    t.index ["user_id"], name: "index_meetings_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
@@ -68,4 +81,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_25_114002) do
   add_foreign_key "companies", "users"
   add_foreign_key "interviews", "companies"
   add_foreign_key "interviews", "users"
+  add_foreign_key "meetings", "companies"
+  add_foreign_key "meetings", "users"
 end

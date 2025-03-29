@@ -3,6 +3,8 @@ class Api::V1::CompaniesController < ApplicationController
   
   def create
     company = Company.new(company_params)
+    company.user_id = request.headers['uid'].to_i
+
     if company.save
       render json: company, status: :created
     else
@@ -13,7 +15,7 @@ class Api::V1::CompaniesController < ApplicationController
   private
   def company_params
     params.require(:company).permit(
-    :user_id, :name, :industry, :employees, :website, :address, 
+    :name, :industry, :employees, :website, :address, 
     :income, :holidays, :working_hours, :other, :favorite
     )
   end

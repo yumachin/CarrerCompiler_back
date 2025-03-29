@@ -1,4 +1,4 @@
-class Interview < ApplicationRecord
+class Meeting < ApplicationRecord
   belongs_to :company
 
   def company_name
