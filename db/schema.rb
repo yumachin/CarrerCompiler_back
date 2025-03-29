@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_29_060013) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_29_124205) do
   create_table "companies", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "name", default: "", null: false
@@ -55,6 +55,20 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_29_060013) do
     t.index ["user_id"], name: "index_meetings_on_user_id"
   end
 
+  create_table "submissions", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "company_id", null: false
+    t.datetime "deadline"
+    t.integer "submission_type", default: 0
+    t.boolean "status", default: false
+    t.string "contact_media", default: ""
+    t.string "submission_url", default: ""
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_submissions_on_company_id"
+    t.index ["user_id"], name: "index_submissions_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
@@ -83,4 +97,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_29_060013) do
   add_foreign_key "interviews", "users"
   add_foreign_key "meetings", "companies"
   add_foreign_key "meetings", "users"
+  add_foreign_key "submissions", "companies"
+  add_foreign_key "submissions", "users"
 end

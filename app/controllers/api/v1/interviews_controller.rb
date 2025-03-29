@@ -3,7 +3,7 @@ class Api::V1::InterviewsController < ApplicationController
   
   def index
     uid = request.headers['uid'].to_i
-    interviews = Interview.includes(:company).where(user_id: uid).order(status: :asc)
+    interviews = Interview.includes(:company).where(user_id: uid).order(status: :asc, id: :desc)
     render json: interviews.as_json(methods: [:company_name])
   end
 

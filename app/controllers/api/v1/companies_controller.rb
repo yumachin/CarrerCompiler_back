@@ -1,5 +1,11 @@
 class Api::V1::CompaniesController < ApplicationController
   before_action :set_user
+
+  def index
+    uid = request.headers['uid'].to_i
+    companies = Company.where(user_id: uid).order(id: :desc)
+    render json: companies
+  end
   
   def create
     company = Company.new(company_params)

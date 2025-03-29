@@ -3,7 +3,7 @@ class Api::V1::MeetingsController < ApplicationController
   
   def index
     uid = request.headers['uid'].to_i
-    meetings = Meeting.includes(:company).where(user_id: uid).order(status: :asc)
+    meetings = Meeting.includes(:company).where(user_id: uid).order(status: :asc, id: :desc)
     render json: meetings.as_json(methods: [:company_name])
   end
 

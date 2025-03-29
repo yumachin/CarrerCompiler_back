@@ -5,9 +5,10 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resource :users, only: [ :show, :update ]
-      resource :companies, only: [ :create ]
+      resources :companies, only: [ :index, :create ]
       resources :interviews, only: [ :index, :create, :update ]
       resources :meetings, only: [ :index, :create, :update ]
+      resources :submissions, only: [ :index, :create, :update ]
     end
   end
 end
