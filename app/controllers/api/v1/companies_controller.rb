@@ -18,6 +18,15 @@ class Api::V1::CompaniesController < ApplicationController
     end
   end
 
+  def update
+    company = Company.find(params[:id])
+    if company.update(company_params)
+      render json: company, status: :ok
+    else
+      render json: company.errors, status: :unprocessable_entity
+    end
+  end
+
   private
   def company_params
     params.require(:company).permit(

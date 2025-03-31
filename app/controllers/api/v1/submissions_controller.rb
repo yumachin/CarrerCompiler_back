@@ -27,6 +27,15 @@ class Api::V1::SubmissionsController < ApplicationController
     end
   end
 
+  def destroy
+    submission = Submission.find(params[:id])
+    if submission.destroy
+      head :no_content
+    else
+      render json: { error: 'Failed to delete submission' }, status: :unprocessable_entity
+    end
+  end
+
   private
   def submission_params
     params.require(:submission).permit(:company_id, :deadline, :status, :submission_url, :contact_media, :submission_type)
