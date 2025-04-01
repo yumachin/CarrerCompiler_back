@@ -27,6 +27,15 @@ class Api::V1::InterviewsController < ApplicationController
     end
   end
 
+  def destroy
+    interview = Interview.find(params[:id])
+    if interview.destroy
+      head :no_content
+    else
+      render json: { error: 'Failed to delete interview' }, status: :unprocessable_entity
+    end
+  end
+
   private
   def interview_params
     params.require(:interview).permit(:company_id, :date, :selection_id, :interview_type, :status, :online_url)

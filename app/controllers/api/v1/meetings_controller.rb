@@ -27,6 +27,15 @@ class Api::V1::MeetingsController < ApplicationController
     end
   end
 
+  def destroy
+    meeting = Meeting.find(params[:id])
+    if meeting.destroy
+      head :no_content
+    else
+      render json: { error: 'Failed to delete meeting' }, status: :unprocessable_entity
+    end
+  end
+
   private
   def meeting_params
     params.require(:meeting).permit(:company_id, :date, :meeting_type, :status, :online_url)

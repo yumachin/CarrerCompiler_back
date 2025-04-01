@@ -6,8 +6,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resource :users, only: [ :show, :update ]
       resources :companies, only: [ :index, :create, :update ]
-      resources :interviews, only: [ :index, :create, :update ]
-      resources :meetings, only: [ :index, :create, :update ]
+      resources :interviews, only: [ :index, :create, :update, :destroy ]
+      resources :meetings, only: [ :index, :create, :update, :destroy ]
       resources :submissions, only: [ :index, :create, :update, :destroy ]
     end
   end
