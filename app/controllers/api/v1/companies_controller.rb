@@ -8,6 +8,15 @@ class Api::V1::CompaniesController < ApplicationController
   end
   
   def create
+    name = params[:company][:name] 
+    Rails.logger.debug "Company name: #{name}"
+    if Company.exists?(name: name)
+      company = Company.find_by(name: name)
+      company.user_id = request.headers['uid'].to_i
+      render json: company, status: :ok
+      return
+    end
+
     company = Company.new(company_params)
     company.user_id = request.headers['uid'].to_i
 
