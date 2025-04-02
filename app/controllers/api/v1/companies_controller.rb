@@ -9,7 +9,6 @@ class Api::V1::CompaniesController < ApplicationController
   
   def create
     name = params[:company][:name] 
-    Rails.logger.debug "Company name: #{name}"
     if Company.exists?(name: name)
       company = Company.find_by(name: name)
       company.user_id = request.headers['uid'].to_i
