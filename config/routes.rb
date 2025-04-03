@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :counts, only: [ :index ]
       resources :dashboard, only: [ :index ]
-      resources :companies, only: [ :index, :create, :update ]
+      resources :companies, only: [ :index, :show, :create, :update ]
       resources :interviews, only: [ :index, :create, :update, :destroy ]
       resources :meetings, only: [ :index, :create, :update, :destroy ]
       resources :submissions, only: [ :index, :create, :update, :destroy ]

@@ -6,6 +6,12 @@ class Api::V1::CompaniesController < ApplicationController
     companies = Company.where(user_id: uid).order(id: :desc)
     render json: companies
   end
+
+  def show
+    company = Company.find(params[:id])
+    company.user_id = request.headers['uid'].to_i
+    render json: company
+  end
   
   def create
     name = params[:company][:name] 
