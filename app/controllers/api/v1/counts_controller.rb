@@ -1,9 +1,8 @@
 class Api::V1::CountsController < ApplicationController
-  # before_action :set_user
+  before_action :set_user
 
   def index
-    # uid = request.headers['uid'].to_i
-    uid = 6
+    uid = request.headers['uid'].to_i
     table_counts = {
       company_count: Company.where(user_id: uid).count,
       interview_count: Interview.where(user_id: uid).count,

@@ -44,8 +44,8 @@ class Api::V1::CompaniesController < ApplicationController
   private
   def company_params
     params.require(:company).permit(
-    :name, :industry, :employees, :website, :address, 
-    :income, :holidays, :working_hours, :other, :favorite
+    :name, :industry, :employees, :website, :address, :income,
+    :holidays, :working_hours, :other, :favorite, :memo
     )
   end
 end
