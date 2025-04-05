@@ -23,6 +23,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_29_124205) do
     t.string "working_hours", default: ""
     t.string "other", default: ""
     t.boolean "favorite", default: false, null: false
+    t.text "memo", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_companies_on_user_id"

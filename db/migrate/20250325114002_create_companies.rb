@@ -12,6 +12,7 @@ class CreateCompanies < ActiveRecord::Migration[8.0]
       t.string :working_hours, default: ""
       t.string :other, default: ""
       t.boolean :favorite, default: false, null: false
+      t.text :memo, default: ""
 
       t.timestamps
     end
