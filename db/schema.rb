@@ -82,8 +82,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_29_124205) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.string "name"
-    t.string "email"
+    t.string "name", default: "", null: false
+    t.string "email", default: "", null: false
     t.text "tokens"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
