@@ -2,18 +2,31 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  username: <%= ENV.fetch("DB_USERNAME", "postgres") %>
-  password: <%= ENV.fetch("DB_PASSWORD", "") %>
-  host: <%= ENV.fetch("DB_HOST", "localhost") %>
 
 development:
   <<: *default
-  database: career_compiler_development
+  database: career_compiler
+  host: localhost
+  username: yuma
+  password:
 
 test:
   <<: *default
   database: career_compiler_test
+  host: localhost
+  username: yuma
+  password:
 
 production:
   <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
+  database: career_compiler_db
+  host: <%= ENV['DB_HOST'] %>
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
+
+  cable:
+    <<: *default
+    database: career_compiler_db
+    host: <%= ENV['DB_HOST'] %>
+    username: <%= ENV['DB_USERNAME'] %>
+    password: <%= ENV['DB_PASSWORD'] %>
