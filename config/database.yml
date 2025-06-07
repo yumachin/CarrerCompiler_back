@@ -24,9 +24,9 @@ production:
   username: <%= ENV['DB_USERNAME'] %>
   password: <%= ENV['DB_PASSWORD'] %>
 
-  cable:
-    <<: *default
-    database: career_compiler_db
-    host: <%= ENV['DB_HOST'] %>
-    username: <%= ENV['DB_USERNAME'] %>
-    password: <%= ENV['DB_PASSWORD'] %>
+cable:
+  <<: *default
+  database: career_compiler_db
+  host: <%= ENV['DB_HOST'] %>
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
