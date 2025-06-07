@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root to: proc { [200, { 'Content-Type' => 'application/json' }, [{ status: 'API is live' }.to_json]] }
+  
   mount_devise_token_auth_for 'User', at: 'auth', controllers: {
     sessions: "sessions", registrations: "registrations"
   }
