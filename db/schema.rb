@@ -10,23 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_29_124205) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_08_034151) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "companies", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "name", default: "", null: false
-    t.integer "industry", default: 0
-    t.integer "employees", default: 0
-    t.string "website", default: ""
-    t.string "address", default: ""
-    t.integer "income", default: 0
-    t.integer "holidays", default: 0
-    t.string "working_hours", default: ""
-    t.string "other", default: ""
+    t.integer "industry", default: 0, null: false
+    t.integer "employees", default: 0, null: false
+    t.string "website", default: "", null: false
+    t.string "address", default: "", null: false
+    t.integer "income", default: 0, null: false
+    t.integer "holidays", default: 0, null: false
+    t.string "working_hours", default: "", null: false
+    t.string "other", default: "", null: false
     t.boolean "favorite", default: false, null: false
-    t.text "memo", default: ""
+    t.text "memo", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_companies_on_user_id"
@@ -36,10 +36,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_29_124205) do
     t.integer "user_id", null: false
     t.integer "company_id", null: false
     t.datetime "date"
-    t.integer "selection_id", default: 0
-    t.string "interview_type", default: ""
-    t.string "online_url", default: ""
-    t.boolean "status", default: false
+    t.integer "selection_id", default: 0, null: false
+    t.string "interview_type", default: "", null: false
+    t.string "online_url", default: "", null: false
+    t.boolean "status", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_interviews_on_company_id"
@@ -50,9 +50,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_29_124205) do
     t.integer "user_id", null: false
     t.integer "company_id", null: false
     t.datetime "date"
-    t.string "meeting_type", default: ""
-    t.string "online_url", default: ""
-    t.boolean "status", default: false
+    t.string "meeting_type", default: "", null: false
+    t.string "online_url", default: "", null: false
+    t.boolean "status", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_meetings_on_company_id"
@@ -63,10 +63,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_29_124205) do
     t.integer "user_id", null: false
     t.integer "company_id", null: false
     t.datetime "deadline"
-    t.integer "submission_type", default: 0
-    t.boolean "status", default: false
-    t.string "contact_media", default: ""
-    t.string "submission_url", default: ""
+    t.integer "submission_type", default: 0, null: false
+    t.boolean "status", default: false, null: false
+    t.string "contact_media", default: "", null: false
+    t.string "submission_url", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_submissions_on_company_id"
