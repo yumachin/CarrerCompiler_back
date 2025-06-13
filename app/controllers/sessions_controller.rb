@@ -6,11 +6,11 @@ class SessionsController < DeviseTokenAuth::SessionsController
       Rails.logger.debug "トークンは、#{token}"
 
       response.set_header("Set-Cookie", [
-        "access-token=#{token['access-token']}; Path=/; HttpOnly; Secure; SameSite=None; Max-Age=6000",
-        "client=#{token['client']}; Path=/; HttpOnly; Secure; SameSite=None; Max-Age=6000",
-        "email=#{token['uid']}; Path=/; HttpOnly; Secure; SameSite=None; Max-Age=6000",
-        "uid=#{user.id}; Path=/; HttpOnly; Secure; SameSite=None; Max-Age=6000",
-        "token-type=Bearer; HttpOnly; Secure; SameSite=None; Path=/; Max-Age=6000"
+        "access-token=#{token['access-token']}; Path=/; HttpOnly; Secure; SameSite=None; Max-Age=86400",
+        "client=#{token['client']}; Path=/; HttpOnly; Secure; SameSite=None; Max-Age=86400",
+        "email=#{token['uid']}; Path=/; HttpOnly; Secure; SameSite=None; Max-Age=86400",
+        "uid=#{user.id}; Path=/; HttpOnly; Secure; SameSite=None; Max-Age=86400",
+        "token-type=Bearer; HttpOnly; Secure; SameSite=None; Path=/; Max-Age=86400"
       ])
       @current_user = user
       Rails.logger.debug "current_userは、#{@current_user}"
