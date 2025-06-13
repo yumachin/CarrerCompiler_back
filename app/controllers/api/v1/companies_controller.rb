@@ -40,6 +40,17 @@ class Api::V1::CompaniesController < ApplicationController
       render json: company.errors, status: :unprocessable_entity
     end
   end
+  def update
+    company = Company.find(params[:id])
+    # null値を除外してupdateパラメータを構築
+    filtered_params = company_params.reject { |key, value| value.nil? }
+    
+    if company.update(filtered_params)
+      render json: company, status: :ok
+    else
+      render json: company.errors, status: :unprocessable_entity
+    end
+  end
 
   private
   def company_params
