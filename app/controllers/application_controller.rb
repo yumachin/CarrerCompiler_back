@@ -10,6 +10,7 @@ class ApplicationController < ActionController::API
 
   public
   def set_user
+    Rails.logger.debug "backメールアドレスは、、、#{request.headers['email']}"
     user = User.find_by(email: request.headers['email'].presence || params[:email])
     Rails.logger.debug "ユーザーは、#{user}"
 
